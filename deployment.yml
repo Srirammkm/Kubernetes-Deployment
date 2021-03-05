@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: srirammk18/py-db:latest
+        image: srirammk18/py-db:final
         imagePullPolicy: Always
         ports:
         - containerPort: 80
