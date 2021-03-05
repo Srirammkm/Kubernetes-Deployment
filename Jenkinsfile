@@ -2,7 +2,7 @@ pipeline {
   environment {
   IBM_CLOUD_REGION = 'us-south'
   IKS_CLUSTER = 'c0uvrhfd0v1b3bd432lg'
-  registry = "srirammk18/flask-k8s"
+  registry = "srirammk18/py-db"
   registryCredential = 'dockerhub_id'
   dockerImage = ''
   }
@@ -11,7 +11,7 @@ pipeline {
     stage('Build with Docker') {
       steps {
         script {
-        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+        dockerImage = docker.build registry
         }
       }
     }
@@ -37,7 +37,6 @@ pipeline {
         sh '''
             ibmcloud ks cluster config --cluster ${IKS_CLUSTER}
             kubectl config current-context
-            export BUILD_NUMBER=$BUILD_NUMBER
             kubectl apply -f service.yml
             kubectl apply -f ingress.yml
             kubectl apply -f db-deploy.yml
