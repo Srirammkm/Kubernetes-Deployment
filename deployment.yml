@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
       - name: flask-app
-        image: srirammk18/py-db:3
+        image: srirammk18/py-db
         imagePullPolicy: Always
         ports:
-        - containerPort: 5000
+        - containerPort: 80
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: root
